@@ -1,0 +1,12 @@
+services:
+  database:
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: password
+  client:
+    environment:
+      DB_HOST: database
+      DB_NAME: docker_doc_dev
+      DB_USER: db_client
+      DB_PASS: password
+      APP_ENV: dev

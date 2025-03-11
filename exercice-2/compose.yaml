@@ -1,0 +1,29 @@
+services:
+  database:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_USER: db_client
+      MYSQL_DATABASE: docker_doc_dev
+    networks:
+      - app_net
+
+  client:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - database
+    networks:
+      - app_net
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  app_net:

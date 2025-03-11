@@ -1,0 +1,15 @@
+services:
+  database:
+    environment:
+      MYSQL_ROOT_PASSWORD: a-strong-password
+      MYSQL_PASSWORD: another-strong-password
+  client:
+    environment:
+      DB_NAME: docker_doc
+      DB_USER: db_client
+      DB_PASS: another-strong-password
+      APP_ENV: prod
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
